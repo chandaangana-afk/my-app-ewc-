@@ -1,103 +1,79 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { GameGenre } from "@/lib/types";
-import { MOCK_TEAMS } from "@/lib/mockData";
-import TopNav from "@/components/TopNav";
-import Sidebar from "@/components/Sidebar";
-import PredictiveMatrix from "@/components/tabs/PredictiveMatrix";
-import TacticalMap from "@/components/tabs/TacticalMap";
-import PlayerHub from "@/components/tabs/PlayerHub";
-import { Activity, Map as MapIcon, Users } from "lucide-react";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
 
-type Tab = "matrix" | "map" | "players";
+const GAMES = [
+  { name: "Counter-Strike 2", logo: null, slug: "counter-strike-2" },
+  { name: "VALORANT", logo: "/valo2.webp", slug: "valorant" },
+  { name: "Dota 2", logo: "/dota2.webp", scale: "scale-150", slug: "dota-2" },
+  { name: "PUBG Mobile", logo: "/pubg-mobile.webp", slug: "pubg-mobile" },
+  { name: "Free Fire", logo: "/free-fire-max.png", scale: "scale-250", slug: "free-fire" },
+  { name: "PUBG PC", logo: "/pubg-pc.webp", slug: "pubg-pc" },
+  { name: "Call Of Duty", logo: "/cod2.png", scale: "scale-150", slug: "call-of-duty" }
+];
 
-export default function Dashboard() {
-  const [genre, setGenre] = useState<GameGenre>("Tactical FPS");
-  const [activeTab, setActiveTab] = useState<Tab>("matrix");
-  
-  // Filter teams by genre
-  const availableTeams = useMemo(() => MOCK_TEAMS.filter((t) => t.genre === genre), [genre]);
-  
-  // Keep selected team in sync if genre changes
-  const [selectedTeamId, setSelectedTeamId] = useState<string>(availableTeams[0]?.id || "");
-
-  // Update selected team if available teams change and current is no longer valid
-  useMemo(() => {
-    if (!availableTeams.find(t => t.id === selectedTeamId)) {
-      setSelectedTeamId(availableTeams[0]?.id || "");
-    }
-  }, [availableTeams, selectedTeamId]);
-
-  const activeTeam = availableTeams.find((t) => t.id === selectedTeamId);
-
+export default function LandingPage() {
   return (
-    <div className="h-screen w-full flex flex-col bg-zinc-950 overflow-hidden text-slate-200">
-      <TopNav currentGenre={genre} onGenreChange={setGenre} />
+    <div className="min-h-screen bg-white text-slate-900 font-sans overflow-x-hidden selection:bg-teal-500/30">
 
-      <div className="flex-1 flex overflow-hidden">
-        <Sidebar 
-          teams={availableTeams} 
-          selectedTeamId={selectedTeamId} 
-          onSelectTeam={setSelectedTeamId} 
-        />
+      {/* Top Navbar */}
+      <nav className="w-full bg-black flex justify-center sticky top-0 z-50 shadow-sm h-28 md:h-36">
+        <div className="relative w-full max-w-7xl h-full py-4">
+          <Image 
+            src="/ewc.png"
+            alt="EWC 2026 Analytics"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+      </nav>
 
-        <main className="flex-1 flex flex-col min-w-0 bg-zinc-950/50">
-          {/* Tab Navigation */}
-          <div className="flex px-6 pt-6 border-b border-zinc-800">
-            <div className="flex gap-6">
-              <button
-                onClick={() => setActiveTab("matrix")}
-                className={`pb-4 text-sm font-medium transition-colors border-b-2 flex items-center gap-2 ${
-                  activeTab === "matrix" 
-                    ? "border-emerald-500 text-emerald-400" 
-                    : "border-transparent text-zinc-400 hover:text-zinc-200"
-                }`}
-              >
-                <Activity className="w-4 h-4" />
-                Predictive Matrix
-              </button>
-              <button
-                onClick={() => setActiveTab("map")}
-                className={`pb-4 text-sm font-medium transition-colors border-b-2 flex items-center gap-2 ${
-                  activeTab === "map" 
-                    ? "border-cyan-500 text-cyan-400" 
-                    : "border-transparent text-zinc-400 hover:text-zinc-200"
-                }`}
-              >
-                <MapIcon className="w-4 h-4" />
-                Tactical Map
-              </button>
-              <button
-                onClick={() => setActiveTab("players")}
-                className={`pb-4 text-sm font-medium transition-colors border-b-2 flex items-center gap-2 ${
-                  activeTab === "players" 
-                    ? "border-violet-500 text-violet-400" 
-                    : "border-transparent text-zinc-400 hover:text-zinc-200"
-                }`}
-              >
-                <Users className="w-4 h-4" />
-                Player Hub
-              </button>
-            </div>
-          </div>
+      {/* Hero Section */}
+      <main className="w-full pb-20">
+        <h2 className="font-['Orbitron',_sans-serif] text-slate-400 text-lg mt-12 mb-8 text-center font-bold tracking-[0.15em] uppercase">
+          Select Game
+        </h2>
 
-          {/* Tab Content */}
-          <div className="flex-1 overflow-hidden">
-            {activeTeam ? (
-              <>
-                {activeTab === "matrix" && <PredictiveMatrix data={activeTeam.tacticalData} />}
-                {activeTab === "map" && <TacticalMap data={activeTeam.tacticalData} />}
-                {activeTab === "players" && <PlayerHub roster={activeTeam.roster} />}
-              </>
-            ) : (
-              <div className="h-full flex items-center justify-center text-zinc-500">
-                No data available for this genre.
-              </div>
-            )}
-          </div>
-        </main>
-      </div>
+        {/* The Game Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
+          {GAMES.map((game, index) => (
+            <Link href={`/${game.slug}`} key={game.name}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="bg-white/60 backdrop-blur-xl border border-slate-200 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-teal-400 hover:shadow-[0_8px_30px_rgba(20,184,166,0.25)] transition-all duration-300 transform hover:-translate-y-1 group relative overflow-hidden h-48 shadow-sm">
+                  {/* Visual Background Glow */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-teal-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                  {/* Logo or Text */}
+                  <div className="z-10 relative flex items-center justify-center w-full h-full transition-transform duration-300 group-hover:scale-110">
+                    {game.logo ? (
+                      <Image
+                        src={game.logo}
+                        alt={game.name}
+                        fill
+                        className={`object-contain transition-transform duration-300 ${game.scale || ''}`}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <span className="font-['Orbitron',_sans-serif] text-xl font-bold tracking-widest text-slate-700 uppercase group-hover:text-teal-500 transition-colors duration-300">
+                        {game.name}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </Link>
+          ))}
+        </div>
+      </main>
     </div>
   );
 }
