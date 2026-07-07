@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Trophy, Github, Twitter, MessageCircle } from "lucide-react";
+import { Trophy, X, Globe, MessageCircle } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -19,10 +19,10 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <a href="#" className="p-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition-colors">
-              <Twitter className="w-5 h-5" />
+              <X className="w-5 h-5" />
             </a>
             <a href="#" className="p-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition-colors">
-              <Github className="w-5 h-5" />
+              <Globe className="w-5 h-5" />
             </a>
             <a href="#" className="p-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition-colors">
               <MessageCircle className="w-5 h-5" />
