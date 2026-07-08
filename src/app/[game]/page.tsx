@@ -23,17 +23,13 @@ export default function GamePage({ params }: { params: Promise<{ game: string }>
   const isPubgM = game.slug === 'pubg-mobile';
   const isPubgPc = game.slug === 'pubg-pc';
   const hasDarkBg = isCod || isFf || isValo || isDota || isPubgM || isPubgPc;
-  const bgImage = isCod ? 'url(/codbg.webp)' : isFf ? 'url(/ffbg.webp)' : isValo ? 'url(/valobg.webp)' : isDota ? 'url(/dotabg.webp)' : isPubgM ? 'url(/pubgmbg.webp)' : isPubgPc ? 'url(/pubgpcbg.webp)' : '';
 
   return (
     <div 
       className={`min-h-screen font-sans overflow-x-hidden selection:bg-teal-500/30 ${hasDarkBg ? 'text-white' : 'bg-white text-slate-900'}`}
     >
       {hasDarkBg && (
-        <div 
-          className="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat bg-slate-950" 
-          style={{ backgroundImage: bgImage, opacity: 0.2 }} 
-        />
+        <div className={`game-page__bg game-page__bg--${game.slug}`} />
       )}
       {/* Top Navbar */}
       <nav className="w-full bg-black flex justify-between items-center sticky top-0 z-50 shadow-sm h-20 px-8">

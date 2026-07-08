@@ -1,27 +1,136 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #080B12;
+  --foreground: #EAEEF6;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.font-display {
+  font-family: "Rajdhani", sans-serif;
+}
+
+.game-card {
+  --accent-glow: rgba(34, 230, 212, 0.28);
+  --accent-line: rgba(34, 230, 212, 0.38);
+  --accent-bg: rgba(34, 230, 212, 0.2);
+  --accent-text: #22E6D4;
+}
+
+.game-card--cs2 {
+  --accent-glow: rgba(34, 230, 212, 0.28);
+  --accent-line: rgba(34, 230, 212, 0.38);
+  --accent-bg: rgba(34, 230, 212, 0.2);
+  --accent-text: #22E6D4;
+}
+
+.game-card--valorant {
+  --accent-glow: rgba(244, 63, 94, 0.28);
+  --accent-line: rgba(244, 63, 94, 0.38);
+  --accent-bg: rgba(244, 63, 94, 0.2);
+  --accent-text: #F43F5E;
+}
+
+.game-card--dota {
+  --accent-glow: rgba(168, 85, 247, 0.28);
+  --accent-line: rgba(168, 85, 247, 0.38);
+  --accent-bg: rgba(168, 85, 247, 0.2);
+  --accent-text: #A855F7;
+}
+
+.game-card--pubg-mobile {
+  --accent-glow: rgba(250, 204, 21, 0.28);
+  --accent-line: rgba(250, 204, 21, 0.38);
+  --accent-bg: rgba(250, 204, 21, 0.2);
+  --accent-text: #FACC15;
+}
+
+.game-card--pubg-pc {
+  --accent-glow: rgba(56, 189, 248, 0.28);
+  --accent-line: rgba(56, 189, 248, 0.38);
+  --accent-bg: rgba(56, 189, 248, 0.2);
+  --accent-text: #38BDF8;
+}
+
+.game-card--free-fire {
+  --accent-glow: rgba(251, 146, 60, 0.28);
+  --accent-line: rgba(251, 146, 60, 0.38);
+  --accent-bg: rgba(251, 146, 60, 0.2);
+  --accent-text: #FB923C;
+}
+
+.game-card--cod {
+  --accent-glow: rgba(52, 211, 153, 0.28);
+  --accent-line: rgba(52, 211, 153, 0.38);
+  --accent-bg: rgba(52, 211, 153, 0.2);
+  --accent-text: #34D399;
+}
+
+.game-card__glow {
+  background: radial-gradient(circle at 18% 0%, var(--accent-glow) 0%, transparent 58%);
+}
+
+.game-badge {
+  color: var(--accent-text);
+  box-shadow: 0 0 0 1px var(--accent-line), 0 0 24px var(--accent-glow);
+  background: linear-gradient(145deg, var(--accent-bg), rgba(255,255,255,0.02));
+}
+
+.game-card__dot {
+  background-color: var(--accent-text);
+}
+
+::selection {
+  background: rgba(34, 230, 212, 0.3);
+  color: #f8fbff;
+}
+
+.game-page__bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: #020617;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.2;
+}
+
+.game-page__bg--call-of-duty {
+  background-image: url('/codbg.webp');
+}
+
+.game-page__bg--free-fire {
+  background-image: url('/ffbg.webp');
+}
+
+.game-page__bg--valorant {
+  background-image: url('/valobg.webp');
+}
+
+.game-page__bg--dota-2 {
+  background-image: url('/dotabg.webp');
+}
+
+.game-page__bg--pubg-mobile {
+  background-image: url('/pubgmbg.webp');
+}
+
+.game-page__bg--pubg-pc {
+  background-image: url('/pubgpcbg.webp');
 }
