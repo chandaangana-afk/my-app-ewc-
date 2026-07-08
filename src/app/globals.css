@@ -14,21 +14,6 @@ html {
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-primary: #0F172A;
-    --bg-surface: #111827;
-    --text-primary: #EAEEF6;
-    --text-secondary: #94A3B8;
-    --accent: #60A5FA;
-    --border: rgba(148, 163, 184, 0.18);
-  }
-
-  html {
-    color-scheme: dark;
-  }
-}
-
 body {
   margin: 0;
   background: var(--bg-primary);
