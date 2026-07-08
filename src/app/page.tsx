@@ -75,48 +75,48 @@ export default function LandingPage() {
   });
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#F6F7F9] text-[#111827]">
+    <div className="min-h-screen overflow-x-hidden bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-[-8rem] h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-[rgba(59,130,246,0.08)] blur-[90px]" />
-        <div className="absolute right-[-6rem] top-[-1rem] h-[14rem] w-[14rem] rounded-full bg-[rgba(168,85,247,0.05)] blur-[80px]" />
+        <div className="absolute left-1/2 top-[-8rem] h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-[rgba(37,99,235,0.08)] blur-[90px]" />
+        <div className="absolute right-[-6rem] top-[-1rem] h-[14rem] w-[14rem] rounded-full bg-[rgba(37,99,235,0.05)] blur-[80px]" />
       </div>
 
       <header className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
-          <div className="relative flex h-12 w-12 items-center justify-center rounded-[14px] border border-slate-200 bg-white shadow-sm">
-            <span className="relative text-[0.85rem] font-semibold text-[#111827]">
+          <div className="relative flex h-12 w-12 items-center justify-center rounded-[14px] border border-[var(--border)] bg-[var(--bg-surface)] shadow-sm">
+            <span className="relative text-[0.85rem] font-semibold text-[var(--text-primary)]">
               EWC
             </span>
           </div>
           <div className="flex flex-col">
-            <span className="font-display text-[0.95rem] font-semibold text-[#111827]">
+            <span className="font-display text-[0.95rem] font-semibold text-[var(--text-primary)]">
               EWC
             </span>
-            <span className="text-[0.75rem] text-[#6B7280]">
+            <span className="text-[0.75rem] text-[var(--text-secondary)]">
               Analytics
             </span>
           </div>
         </Link>
 
-        <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-[0.8rem] font-medium text-[#6B7280] shadow-sm">
+        <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-surface)] px-3 py-2 text-[0.8rem] font-medium text-[var(--text-secondary)] shadow-sm">
           <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#22E6D4] opacity-60" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#22E6D4]" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent)] opacity-60" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--accent)]" />
           </span>
           Live data
         </div>
       </header>
 
       <main className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 pb-20 pt-4 sm:px-6 lg:px-8 lg:pt-8">
-        <section className="rounded-[24px] border border-slate-200 bg-white px-5 py-10 shadow-sm sm:px-8 lg:px-10 lg:py-12">
+        <section className="rounded-[24px] border border-[var(--border)] bg-[var(--bg-surface)] px-5 py-10 shadow-sm sm:px-8 lg:px-10 lg:py-12">
           <div className="max-w-2xl">
-            <p className="mb-3 text-[0.8rem] font-semibold uppercase tracking-[0.22em] text-[#2563EB]">
+            <p className="mb-3 text-[0.8rem] font-semibold uppercase tracking-[0.22em] text-[var(--accent)]">
               Live esports analytics
             </p>
-            <h1 className="font-display text-5xl font-semibold tracking-[-0.03em] text-[#111827] sm:text-6xl lg:text-7xl">
+            <h1 className="font-display text-5xl font-semibold tracking-[-0.03em] text-[var(--text-primary)] sm:text-6xl lg:text-7xl">
               Choose your arena with confidence
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-8 text-[#475569] sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-8 text-[var(--text-secondary)] sm:text-lg">
               Clean, thoughtful insights for every game — balanced with clarity, softness, and a less mechanical feel.
             </p>
           </div>
@@ -134,15 +134,15 @@ export default function LandingPage() {
             >
               <Link href={`/${game.slug}`} className="group block">
                 <article
-                  className={`game-card relative h-full overflow-hidden rounded-[24px] border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--accent-line)] hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)] ${game.accent.cardClass}`}
+                  className={`game-card relative h-full overflow-hidden rounded-[24px] border border-[var(--border)] bg-[var(--bg-surface)] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--accent-line)] hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)] ${game.accent.cardClass}`}
                 >
                   <div className="game-card__glow pointer-events-none absolute inset-0 rounded-[24px] opacity-0 transition-opacity duration-300 group-hover:opacity-80" />
 
                   <div className="relative z-10 flex h-full flex-col">
                     <div className="mb-6 flex items-center justify-between gap-4">
-                      <div className="game-badge relative flex h-14 w-14 items-center justify-center rounded-[18px] border border-slate-200 bg-slate-50 p-1 shadow-sm">
+                      <div className="game-badge relative flex h-14 w-14 items-center justify-center rounded-[18px] border border-[var(--border)] bg-[var(--bg-surface)] p-1 shadow-sm">
                         {game.logoUrl ? (
-                          <div className="game-badge__image-wrapper rounded-[12px] overflow-hidden bg-white p-1">
+                          <div className="game-badge__image-wrapper rounded-[12px] overflow-hidden bg-[var(--bg-surface)] p-1">
                             <Image
                               src={game.logoUrl}
                               alt={`${game.title} logo`}
@@ -152,31 +152,31 @@ export default function LandingPage() {
                             />
                           </div>
                         ) : (
-                          <span className="text-sm font-semibold tracking-[0.08em] text-[#111827]">
+                          <span className="text-sm font-semibold tracking-[0.08em] text-[var(--text-primary)]">
                             {game.accent.tag}
                           </span>
                         )}
                       </div>
-                      <span className="text-[0.74rem] font-semibold text-[#6B7280]">
+                      <span className="text-[0.74rem] font-semibold text-[var(--text-secondary)]">
                         #{game.rank}
                       </span>
                     </div>
 
                     <div className="space-y-2">
-                      <h2 className="font-display text-[1.2rem] font-semibold text-[#111827]">
+                      <h2 className="font-display text-[1.2rem] font-semibold text-[var(--text-primary)]">
                         {game.title}
                       </h2>
-                      <p className="text-sm text-[#475569]">{game.accent.genre}</p>
+                      <p className="text-sm text-[var(--text-secondary)]">{game.accent.genre}</p>
                     </div>
 
                     <div className="mt-auto flex items-center justify-between pt-8">
-                      <div className="inline-flex items-center gap-2 text-sm font-medium text-[#6B7280]">
+                      <div className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)]">
                         <span className="game-card__dot h-2.5 w-2.5 rounded-full" />
                         Live
                       </div>
-                      <div className="flex items-center gap-2 text-sm font-semibold text-[#111827] transition-transform duration-300 group-hover:translate-x-1">
+                      <div className="flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition-transform duration-300 group-hover:translate-x-1">
                         Open
-                        <ArrowRight className="h-4 w-4 text-[#111827]" />
+                        <ArrowRight className="h-4 w-4 text-[var(--accent)]" />
                       </div>
                     </div>
                   </div>

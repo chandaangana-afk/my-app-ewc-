@@ -2,18 +2,37 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F6F7F9;
-  --foreground: #111827;
+  --bg-primary: #F6F7F9;
+  --bg-surface: #FFFFFF;
+  --text-primary: #1A1D24;
+  --text-secondary: #475569;
+  --accent: #2563EB;
+  --border: rgba(148, 163, 184, 0.24);
 }
 
 html {
   color-scheme: light;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #0F172A;
+    --bg-surface: #111827;
+    --text-primary: #EAEEF6;
+    --text-secondary: #94A3B8;
+    --accent: #60A5FA;
+    --border: rgba(148, 163, 184, 0.18);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+}
+
 body {
   margin: 0;
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-primary);
+  color: var(--text-primary);
   font-family: "Inter", sans-serif;
 }
 
@@ -30,6 +49,9 @@ body {
   --accent-line: rgba(34, 230, 212, 0.38);
   --accent-bg: rgba(34, 230, 212, 0.2);
   --accent-text: #22E6D4;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-color: var(--border);
 }
 
 .game-card--cs2 {
@@ -37,10 +59,12 @@ body {
   --accent-line: rgba(34, 230, 212, 0.38);
   --accent-bg: rgba(34, 230, 212, 0.2);
   --accent-text: #22E6D4;
+  color: #F8FAFC;
   background-image: linear-gradient(rgba(8, 11, 18, 0.82), rgba(8, 11, 18, 0.82)), url('/cod2.png');
   background-blend-mode: overlay;
   background-position: center;
   background-size: cover;
+  border-color: rgba(255,255,255,0.14);
 }
 
 .game-card--valorant {
@@ -100,8 +124,8 @@ body {
 }
 
 ::selection {
-  background: rgba(34, 230, 212, 0.3);
-  color: #f8fbff;
+  background: rgba(37, 99, 235, 0.16);
+  color: var(--bg-surface);
 }
 
 .game-page__bg {
