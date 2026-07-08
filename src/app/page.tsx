@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -57,6 +58,10 @@ const getAccentPreset = (title: string): AccentPreset => {
   };
 };
 
+const logoUrlBySlug: Record<string, string> = {
+  "counter-strike-2": "/cod2.png",
+};
+
 export default function LandingPage() {
   const games = mockData.map((game, index) => {
     const accent = getAccentPreset(game.title);
@@ -65,6 +70,7 @@ export default function LandingPage() {
       ...game,
       accent,
       rank: index + 1,
+      logoUrl: logoUrlBySlug[game.slug],
     };
   });
 
@@ -136,8 +142,20 @@ export default function LandingPage() {
                   <div className="relative z-10 flex h-full flex-col">
                     <div className="mb-6 flex items-start justify-between">
                       <div className="game-badge relative flex h-14 w-14 items-center justify-center rounded-[16px] border border-white/10 text-lg font-semibold uppercase tracking-[0.24em]">
-                        {game.accent.tag}
-                      </div>
+                      {game.logoUrl ? (
+                        <div className="game-badge__image-wrapper">
+                          <Image
+                            src={game.logoUrl}
+                            alt={`${game.title} logo`}
+                            width={44}
+                            height={44}
+                            className="game-badge__image"
+                          />
+                        </div>
+                      ) : (
+                        game.accent.tag
+                      )}
+                    </div>
                       <span className="text-[0.72rem] font-semibold uppercase tracking-[0.35em] text-[#5A6578]">
                         #{game.rank}
                       </span>
