@@ -37,6 +37,10 @@ body {
   --accent-line: rgba(34, 230, 212, 0.38);
   --accent-bg: rgba(34, 230, 212, 0.2);
   --accent-text: #22E6D4;
+  background-image: linear-gradient(rgba(8, 11, 18, 0.82), rgba(8, 11, 18, 0.82)), url('/cod2.png');
+  background-blend-mode: overlay;
+  background-position: center;
+  background-size: cover;
 }
 
 .game-card--valorant {
