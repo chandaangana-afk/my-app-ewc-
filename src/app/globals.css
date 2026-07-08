@@ -2,12 +2,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #080B12;
-  --foreground: #EAEEF6;
+  --background: #F6F7F9;
+  --foreground: #111827;
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
