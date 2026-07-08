@@ -31,16 +31,15 @@ export default function TeamDashboard({ params }: { params: Promise<{ game: stri
   const isPubgM = game.slug === 'pubg-mobile';
   const isPubgPc = game.slug === 'pubg-pc';
   const hasDarkBg = isCod || isFf || isValo || isDota || isPubgM || isPubgPc;
-  const bgImage = isCod ? 'url(/codbg.webp)' : isFf ? 'url(/ffbg.webp)' : isValo ? 'url(/valobg.webp)' : isDota ? 'url(/dotabg.webp)' : isPubgM ? 'url(/pubgmbg.webp)' : isPubgPc ? 'url(/pubgpcbg.webp)' : '';
+  const bgClass = isCod ? 'game-page__bg--call-of-duty' : isFf ? 'game-page__bg--free-fire' : isValo ? 'game-page__bg--valorant' : isDota ? 'game-page__bg--dota-2' : isPubgM ? 'game-page__bg--pubg-mobile' : isPubgPc ? 'game-page__bg--pubg-pc' : '';
 
   return (
     <div 
-      className={`min-h-screen text-white font-sans overflow-x-hidden selection:bg-teal-500/30 ${hasDarkBg ? '' : 'bg-slate-950'}`}
+      className={`min-h-screen text-white font-sans overflow-x-hidden selection:bg-teal-500/30 bg-slate-950`}
     >
       {hasDarkBg && (
         <div 
-          className="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat bg-slate-950" 
-          style={{ backgroundImage: bgImage, opacity: 0.2 }} 
+          className={`fixed inset-0 z-[-1] game-page__bg bg-cover bg-center bg-no-repeat ${bgClass}`} 
         />
       )}
       {/* Top Navbar */}
@@ -137,19 +136,20 @@ export default function TeamDashboard({ params }: { params: Promise<{ game: stri
               <h2 className="font-['Orbitron',_sans-serif] text-xl font-bold tracking-widest text-teal-400 mb-6 uppercase border-t border-white/10 pt-6">
                 Strongest Maps
               </h2>
-              <div className="space-y-4">
-                {team.analytics.strongestMaps.map(m => (
-                  <div key={m.mapName} className="flex items-center gap-4">
-                    <div className="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
-                      <div 
-                        className="bg-gradient-to-r from-teal-500 to-cyan-500 h-full rounded-full" 
-                        style={{ width: `${m.score}%` }} 
-                      />
+                    <div className="space-y-4">
+                {team.analytics.strongestMaps.map(m => {
+                  const rounded = Math.round(m.score / 10) * 10;
+                  const cls = `progress-w-${rounded}`;
+                  return (
+                    <div key={m.mapName} className="flex items-center gap-4">
+                      <div className="w-full progress-bar">
+                        <div className={`progress-fill ${cls}`} />
+                      </div>
+                      <span className="text-white font-medium w-24">{m.mapName}</span>
+                      <span className="text-teal-400 font-mono w-12 text-right">{m.score}%</span>
                     </div>
-                    <span className="text-white font-medium w-24">{m.mapName}</span>
-                    <span className="text-teal-400 font-mono w-12 text-right">{m.score}%</span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -172,6 +172,9 @@ export default function TeamDashboard({ params }: { params: Promise<{ game: stri
               className="bg-slate-900 border border-white/10 rounded-2xl p-8 max-w-2xl w-full relative shadow-2xl"
             >
               <button 
+                type="button"
+                aria-label="Close overview"
+                title="Close overview"
                 onClick={() => setShowOverview(false)}
                 className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
               >
